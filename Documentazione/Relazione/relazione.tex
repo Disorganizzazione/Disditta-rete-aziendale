@@ -1,0 +1,52 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{float} %per posizione assoluta delle immagini [H]
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{nameref} 
+
+\graphicspath{{../../Immagini/}}
+
+\def\image[#1][#2]#3{
+  \begin{figure}[H]
+  \centering
+  \includegraphics[#2]{#1}
+  \caption{#3}
+  \end{figure}}
+\def\boximage[#1][#2]#3{
+  \begin{figure}[H]
+  \centering
+  \fbox{\includegraphics[#2]{#1}}
+  \caption{#3}
+  \end{figure}}
+  
+\title{Configurazione di una rete aziendale}
+\author{Arianna Masciolini, Claudio Pannacci}
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\section{Requisiti}
+%schema fisico
+\newpage
+\section{Schema logico della rete}
+\subsection{Edificio A: Amministrazione}
+\subsection{Edificio B: Bunker}
+\subsection{Edificio C: Cubicoli del Codice}
+\subsection{Edificio D: Dipartimento Demilitarizzato}
+\subsection{Edificio E: Eremo}
+\newpage
+\section{Configurazione delle interfacce di rete} %?
+\section{Routing}
+\section{Misure di sicurezza}
+\subsection{Firewall}
+\subsection{Hardening: il server per applicazioni aziendali}
+\subsection{Monitoraggio della rete}
+\newpage
+\section{Preventivo di spesa}
+\end{document}
