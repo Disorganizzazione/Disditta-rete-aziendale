@@ -1,0 +1,58 @@
+\documentclass{beamer}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usetheme{metropolis}
+\graphicspath{{../../Immagini/}}
+\def\image[#1][#2]{
+  \begin{figure}[H]
+  \centering
+  \includegraphics[#2]{#1}
+  \end{figure}}
+\title{Configurazione di una rete aziendale}
+\date{\today}
+\author{Arianna Masciolini, Claudio Pannacci}
+\institute{Università degli Studi di Perugia}
+\begin{document}
+  \maketitle
+  \section{L'azienda}
+  	\begin{frame}{Schema fisico}
+    	...
+  	\end{frame}
+  	\begin{frame}{Mezzi trasmissivi impiegati}
+  		...
+  	\end{frame}
+  \section{Topologia della rete}
+  	\begin{frame}{Visione d'insieme}
+  		\image[disditta.png][scale=0.30]
+  	\end{frame}
+  	\begin{frame}{Edificio A: Amministrazione}
+  		\image[ed_a.png][scale=0.50]
+  	\end{frame}
+  	\begin{frame}{Edificio B: Bunker}
+  		\image[ed_b.png][scale=0.50]
+  	\end{frame}
+  	\begin{frame}{Edificio C: Cubicoli del Codice}
+  		\image[ed_c.png][scale=0.50]
+  	\end{frame}
+  	\begin{frame}{Edificio D: Dipartimento Demilitarizzato}
+  		\image[ed_d.png][scale=0.50]
+  	\end{frame}
+  	\begin{frame}{Edificio E: Eremo}
+  		\image[ed_e.png][scale=0.50]
+  	\end{frame}
+  \section{Routing}
+  \section{Misure di sicurezza}
+  	\begin{frame}{Firewall}
+  		...
+  	\end{frame}
+  	\begin{frame}{Protezione del server per applicazioni aziendali}
+  		...
+  	\end{frame}
+  	\begin{frame}{Monitoraggio}
+  		...
+  	\end{frame}
+  \section{Costi}
+  \begin{frame}{Preventivo di spesa}
+  		...
+  	\end{frame}
+\end{document}
