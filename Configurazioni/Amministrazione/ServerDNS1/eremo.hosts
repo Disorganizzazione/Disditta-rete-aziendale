@@ -8,6 +8,7 @@ $ORIGIN dipartimento.disditta.it ; zone corrispondente in named.conf
 				1W           ; expire, seconds
 				1D )         ; minimum, seconds
 ; DNS e mail
+	IN	NS	dns.disditta.it
 	IN	NS	dns.amministrazione.disdetta.it
 	IN	MX	50 mail.disditta.it
 @	IN 	A   192.168.1.250

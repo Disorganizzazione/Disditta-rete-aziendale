@@ -9,6 +9,8 @@ $TTL 1D
 ; DNS e mail
 	IN	NS	dns.amministrazione.disditta.it
 	IN	MX	50 mail.disditta.it
+; Router
+255	IN	PTR	rtr.cdc.disditta.it.
 ; Servers
 250	IN	PTR	app.cdc.disditta.it.
 ; Hosts
