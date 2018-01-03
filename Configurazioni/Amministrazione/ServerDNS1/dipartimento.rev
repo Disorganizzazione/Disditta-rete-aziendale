@@ -1,0 +1,18 @@
+# Risoluzione inversa Dipartimento Demilitarizzato
+$TTL 1D
+@	IN	SOA	dns.amministrazione.disditta.it.	claudio_pannacci@disditta.it (
+				2014112501   ; serial#
+				3H           ; refresh, seconds
+				1H           ; retry, seconds
+				1W           ; expire, seconds
+				1D )         ; minimum, seconds
+; DNS e mail
+	IN	NS	dns.amministrazione.disditta.it
+	IN	MX	50 mail.disditta.it
+; Router
+255	IN	PTR	rtr.dipartimento.disditta.it.
+; Servers
+250	IN	PTR	dhcp.dipartimento.disditta.it.
+; Hosts
+1	IN	PTR	h1.dipartimento.disditta.it.
+240	IN	PTR	h240.dipartimento.disditta.it.
