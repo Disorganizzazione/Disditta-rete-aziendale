@@ -1,0 +1,18 @@
+# Risoluzione inversa DMZ
+$TTL 1D
+@	IN	SOA	dns.disditta.it.	claudio_pannacci@disditta.it (
+				2014112501   ; serial#
+				3H           ; refresh, seconds
+				1H           ; retry, seconds
+				1W           ; expire, seconds
+				1D )         ; minimum, seconds
+; DNS e mail
+	IN	NS	dns.disditta.it
+	IN	MX	50 mail.disditta.it
+; Router
+254	IN	PTR	rtr.disditta.it.
+; Servers
+250	IN	PTR	dns.disditta.it.
+249	IN	PTR	proxy.disditta.it.
+248	IN	PTR	www.disditta.it.
+247	IN	MX	mail.disditta.it.

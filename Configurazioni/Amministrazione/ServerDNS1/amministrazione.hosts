@@ -1,0 +1,23 @@
+# Zone file per Amministrazione
+$TTL 1D
+$ORIGIN amministrazione.disditta.it ; zone corrispondente in named.conf
+@	IN	SOA	dns.amministrazione.disditta.it.	claudio_pannacci@disditta.it (
+				2014112501   ; serial#
+				3H           ; refresh, seconds
+				1H           ; retry, seconds
+				1W           ; expire, seconds
+				1D )         ; minimum, seconds
+; DNS e mail
+	IN	NS	dns.disditta.it
+	IN	NS	dns.amministrazione.disdetta.it
+	IN	MX	50 mail.disditta.it
+@	IN 	CNAME localhost
+; Web
+www	IN	CNAME	192.168.6.258 ; server web
+; Servers
+dns 	IN	A	192.168.1.250
+; Router
+rtr	IN	A	192.168.1.255
+; Hosts
+h1	IN	A	192.168.1.1
+h100	IN	A	192.168.1.100

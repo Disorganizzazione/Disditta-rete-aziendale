@@ -1,0 +1,23 @@
+# Zone file per Dipartimento Demilitarizzato
+$TTL 1D
+$ORIGIN dipartimento.disditta.it ; zone corrispondente in named.conf
+@	IN	SOA	dns.amministrazione.disditta.it.	claudio_pannacci@disditta.it (
+				2014112501   ; serial#
+				3H           ; refresh, seconds
+				1H           ; retry, seconds
+				1W           ; expire, seconds
+				1D )         ; minimum, seconds
+; DNS e mail
+	IN	NS	dns.disditta.it
+	IN	NS	dns.amministrazione.disdetta.it
+	IN	MX	50 mail.disditta.it
+@	IN 	A   192.168.1.250
+; Web
+www	IN	CNAME	192.168.6.258 ; server web
+; Servers
+dhcp 	IN	A	192.168.4.250
+; Router
+rtr	IN	A	192.168.4.255
+; Hosts
+h1	IN	A	192.168.4.1
+h240	IN	A	192.168.4.240
