@@ -1,5 +1,3 @@
-# Tasso non ne parla mai, ma negli altri progetti c'è (???)
-
 divert(-1)
 This is the sendmail macro config file. If you make changes to this
 file,
