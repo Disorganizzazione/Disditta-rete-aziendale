@@ -21,20 +21,12 @@
   	\begin{frame}{Collegamenti}
   		\begin{itemize}
   			\item \textbf{fibra ottica} per il collegamento degli edifici A, B, C e D
-  			\item \textbf{VPN} per l'edificio E.
+  			\item \textbf{VPN} per l'edificio E
   		\end{itemize}
   	\end{frame}
   \section{Topologia della rete}
   	\begin{frame}{Visione d'insieme}
   		\image[schema_logico.png][scale=0.25]
-  	\end{frame}
-  	\begin{frame}{Visione d'insieme}
-  		\begin{itemize}
-  			\item Sottoreti a stella collegate ad un'area di backbone
-  			\item Due server DNS
-  			\item DMZ
-  			\item Doppio firewall
-  		\end{itemize}
   	\end{frame}
   	\begin{frame}{Edificio A: Amministrazione}
   		\image[ed_a.png][scale=0.50]
@@ -52,10 +44,11 @@
   		\image[ed_e.png][scale=0.50]
   	\end{frame}
   \section{Routing}
-  	\begin{frame}
+  	\begin{frame}{Routing e DNS}
   		\begin{itemize}
   			\item \textbf{Routing statico} nelle reti a stella
   			\item Protocollo \textbf{OSPF} nell'area di  backbone
+  			\item Due server \textbf{DNS}
   		\end{itemize}
   	\end{frame}
   \section{Misure di sicurezza}
@@ -96,7 +89,7 @@
 			\end{tabular}}
 		\end{table}	
 		\begin{itemize}
-			\item costo installazione: 20.000 euro
+			\item costo installazione: 20.000 euro.
 		\end{itemize}
   	\end{frame}
 \end{document}

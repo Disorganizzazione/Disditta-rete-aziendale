@@ -57,7 +57,7 @@ La topologia della rete rispecchia a grandi linee lo schema fisico della stessa.
 I quattro edifici più vicini tra loro (A, B, C, D) sono collegati da un anello di fibra ottica, in modo da garantire un servizio veloce ed affidabile. Per motivi economici, non è stato possibile adottare la stessa soluzione per l'edificio E: quest'ultimo è connesso ai restanti tramite VPN (Virtual Private Network), sfruttando le reti pubbliche senza compromettere la sicurezza.
 \subsection{Edificio A: Amministrazione}
 \image[ed_a.png][scale=0.5]{Dettaglio area 1.}
-L'edificio Amministrazione è il quartier generale dell'azienda, ospita uffici e segreterie. Qui è collocato il server DNS interno, che facilita l'accesso ai dispositivi della rete. Visto il numero non troppo elevato di utenti, a quest'area è asseganta una sola sottorete, la 192.168.1.0/24.
+L'edificio Amministrazione è il quartier generale dell'azienda, ospita uffici e segreterie. Qui è collocato il server DNS interno, che facilita l'accesso ai dispositivi della rete. Visto il numero non troppo elevato di utenti, a quest'area è assegnata una sola sottorete, la 192.168.1.0/24.
 \subsection{Edificio B: Bunker}
 \image[ed_b.png][scale=0.5]{Dettaglio area 2.}
 L'edificio B, soprannominato Bunker, contiene il server di Backup. La sua sottorete è la 192.168.2.0/24.
@@ -75,6 +75,10 @@ La sede legale della ditta, ribattezzata Eremo, conta solo cinquanta utenti e pe
 \section{Routing}
 Siccome le sottoreti degli edifici hanno una topologia a stella, per tutti i dispositivi eccetto i router nell'area di backbone, il routing è statico. 
 Sui router interni gira invece il protocollo OSPF, che permette di associare ad ogni edificio un'area, gestibile indipendentemente dalle altre. In prospettiva, ciò potrebbe tornare utile nel momento in cui, a livello di un singolo edificio, si decidesse di adottare una topologia di rete differente dall'attuale.
+\section{DNS}
+I due server DNS soddisfano due esigenze differenti. 
+\\Il primo, posto nella DMZ, traduce in nomi gli indirizzi dei server cui si accede dall'esterno, ad esempio il server web. Questo è essenziale per la presenza online dell'azienda. 
+\\Il secondo permette di accedere più comodamente alle varie macchine in rete e si rifà al precedente per quel che riguarda i server della DMZ.
 \section{Misure di sicurezza}
 \subsection{Firewall}
 Per soddisfare gli standard minimi di sicurezza, si è scelto di adoperare due firewall distinti, configurati tramite \code{iptables}, integrati nei due router del Dipartimento Demilitarizzato. Grazie ad essi, la DMZ risulta protetta sia dagli accessi provenienti dalla rete locale che da quelli esterni. Il firewall collocato tra la rete locale e la DMZ filtra i pacchetti che queste due porzioni di rete si scambiano tramite due catene di regole (\code{dmzlan} e \code{landm}) e funge da NAT. Analogamente, il firewall esterno si serve delle due catene \code{inetdmz} e \code{dmzinet} per effettuare il packet filtering tra Internet e la DMZ.
