@@ -10,13 +10,12 @@ $ORIGIN disditta.it ; zone corrispondente in named.conf
 ; DNS e mail
 	IN	NS	dns.disditta.it
 	IN	MX	50 mail.disditta.it
-@	IN	CNAME	localhost
 ; Web
 www	IN	CNAME	web
 ; Servers
 mail	IN	A	192.168.6.247
 web	IN	A	192.168.6.248
 proxy	IN	A	192.168.6.249
-dns 	IN	A	192.168.6.250
+dns	IN	A	192.168.6.250
 ; Router
 rtr	IN	A	192.168.6.254
