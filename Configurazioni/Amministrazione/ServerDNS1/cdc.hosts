@@ -11,11 +11,10 @@ $ORIGIN cdc.disditta.it ; zone corrispondente in named.conf
 	IN	NS	dns.disditta.it
 	IN	NS	dns.amministrazione.disdetta.it
 	IN	MX	50 mail.disditta.it
-@	IN 	A   192.168.1.250
 ; Web
 www	IN	CNAME	192.168.6.258 ; server web
 ; Servers
-app 	IN	A	192.168.7.250
+app 	IN	A	192.168.7.250 ; server applicazioni aziendali
 ; Router
 rtr	IN	A	192.168.3.255
 ; Hosts
