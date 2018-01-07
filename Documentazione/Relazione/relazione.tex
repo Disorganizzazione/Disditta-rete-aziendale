@@ -81,11 +81,11 @@ I due server DNS soddisfano due esigenze differenti.
 \\Il secondo permette di accedere più comodamente alle varie macchine in rete e si rifà al precedente per quel che riguarda i server della DMZ.
 \section{Misure di sicurezza}
 \subsection{Firewall}
-Per soddisfare gli standard minimi di sicurezza, si è scelto di adoperare due firewall distinti, configurati tramite \code{iptables}, integrati nei due router del Dipartimento Demilitarizzato. Grazie ad essi, la DMZ risulta protetta sia dagli accessi provenienti dalla rete locale che da quelli esterni. Il firewall collocato tra la rete locale e la DMZ filtra i pacchetti che queste due porzioni di rete si scambiano tramite due catene di regole (\code{dmzlan} e \code{landm}) e funge da NAT. Analogamente, il firewall esterno si serve delle due catene \code{inetdmz} e \code{dmzinet} per effettuare il packet filtering tra Internet e la DMZ.
+Per soddisfare gli standard minimi di sicurezza, si è scelto di adoperare due firewall distinti, configurati tramite \code{iptables}, integrati nei due router del Dipartimento Demilitarizzato. Grazie ad essi, la DMZ risulta protetta sia dagli accessi provenienti dalla rete locale che da quelli esterni. Il firewall collocato tra la rete locale e la DMZ filtra i pacchetti che queste due porzioni di rete si scambiano tramite due catene di regole (\code{dmzlan} e \code{landmz}) e funge da NAT. Analogamente, il firewall esterno si serve delle due catene \code{inetdmz} e \code{dmzinet} per effettuare il packet filtering tra Internet e la DMZ.
 \subsection{Hardening: il server per applicazioni aziendali}
 La sicurezza del server per applicazioni aziendali è stata rafforzata filtrando i pacchetti TCP con un wrapper e facendovi girare il superserver \code{xinetd}, che a sua volta monitora le richieste ai servizi telnet, SSH e NFS talvolta, come nel caso di telnet, disabilitandoli completamente.
 \subsection{Monitoraggio della rete}
-Oltre a raccomandare ai futuri sistemisti di eseguire manualmente i comandi canonici (\code{ping}. \code{ifconfig}, \code{dig}, \code{netstat}, \code{tracepath}...), per agevolare il monitoraggio della rete si consiglia di utilizzare il protocollo SNMP.
+Oltre a raccomandare ai futuri sistemisti di eseguire manualmente i comandi canonici (\code{ping}, \code{ifconfig}, \code{dig}, \code{netstat}, \code{tracepath}...), per agevolare il monitoraggio della rete si consiglia di utilizzare il protocollo SNMP.
 \newpage
 \section{Preventivo di spesa}
 Assumendo che l'azienda sia già in possesso dei server e di tutti i terminali, il costo delle varie componenti hardware è riportato in tabella.
