@@ -8,7 +8,7 @@
 \usepackage{nameref} 
 
 \graphicspath{{../../Immagini/}}
-
+\def\code#1{\texttt{#1}}
 \def\image[#1][#2]#3{
   \begin{figure}[H]
   \centering
@@ -52,34 +52,40 @@ Eremo & 50 & - \\ \hline
 \end{tabular}
 \caption{Riepilogo.}
 \end{table}
-\newpage
 \section{Schema logico della rete}
-La topologia della rete rispecchia a grandi linee lo schema fisico della stessa. In particolare, a ogni edificio corrisponde un'area del protocollo OSPF, contrassegnata da un colore specifico. Tra queste, l'unica area non corrispondente ad un edificio è, ovviamente, l'area di backbone, che coincide con la sottorete 192.168.0.0/24 e contiene un router per ogni edificio. Il router rappresentato al di fuori dell'area di backbone è un exterior router che ha come unico scopo il collegamento con Internet.
+La topologia della rete rispecchia a grandi linee lo schema fisico della stessa. In particolare, a ogni edificio corrisponde un'area del protocollo OSPF, contrassegnata da un colore specifico. Tra queste, l'unica area non corrispondente ad un edificio è, ovviamente, l'area di backbone, che coincide con la sottorete 192.168.0.0/24 e contiene un router per ogni edificio. Il router rappresentato al di fuori dell'area di backbone è un exterior router finalizzato al collegamento con Internet.
 \image[schema_logico.png][scale=0.3]{Schema logico.}
 \paragraph{Collegamenti}
 I quattro edifici più vicini tra loro (A, B, C, D) sono collegati da un anello di fibra ottica, in modo da garantire un servizio veloce ed affidabile. Per motivi economici, non è stato possibile adottare la stessa soluzione per l'edificio E: quest'ultimo è connesso ai restanti tramite VPN (Virtual Private Network), sfruttando le reti pubbliche senza compromettere la sicurezza.
-\newpage
 \subsection{Edificio A: Amministrazione}
 L'edificio Amministrazione è il quartier generale dell'azienda, ospita uffici e segreterie. Qui è collocato il server DNS interno, che facilita l'accesso ai dispositivi della rete. Visto il numero non troppo elevato di utenti, a quest'area è asseganta una sola sottorete, la 192.168.1.0/24.
 \image[ed_a.png][scale=0.5]{Dettaglio area 1.}
 \subsection{Edificio B: Bunker}
-L'edificio B, soprannominato Bunker, contiene il server di Backup ed utilizza la sottorete 192.168.2.0/24 
+L'edificio B, soprannominato Bunker, contiene il server di Backup. La sua sottorete è la 192.168.2.0/24.
 \image[ed_b.png][scale=0.5]{Dettaglio area 2.}
 \subsection{Edificio C: Cubicoli del Codice}
+Fra gli edifici più articolati il blocco dei Cubicoli del Codice, reparto di sviluppo software. Gli sviluppatori si connettono alla sottorete 192.168.3.0/24 tramite i terminali aziendali. Il server per applicazioni aziendali, gestito solo da pochi sistemisti per ragioni di sicurezza, si trova in una zona separata, corrispondente alla sottorete 192.168.7.0/24.
 \image[ed_c.png][scale=0.5]{Dettaglio area 3.}
 \subsection{Edificio D: Dipartimento Demilitarizzato}
+Secondo per numero di utenti, il Dipartimento Demilitarizzato è la zona dedicata alle attività promozionali dell'azienda. Fra le principali, il mantenimento del sito web \url{disditta.it}, hostato dal server web presente nella DMZ. Quest'ultima, corrispondente alla sottorete 192.168.6.0/24 ospita anche  numerosi altri server (il server di posta, il server proxy e il server DNS esterno) e l'exterior router: tutto quel che riguarda i servizi Internet offerti e utilizzati dall'azienda.
+\\La sottorete dedicata al personale è invece la 192.168.4.0/24. Poiché per questa zona è stata richiesta la copertura WiFi, gli indirizzi IP vengono assegnati dinamicamente dal server DHCP ivi collocato. 
 \image[ed_d.png][scale=0.5]{Dettaglio area 4.}
 \subsection{Edificio E: Eremo}
+La sede legale della ditta, ribattezzata Eremo, conta solo cinquanta utenti e pertanto la sua struttura è particolarmente semplice. 
 \image[ed_e.png][scale=0.5]{Dettaglio area 5.}
-\newpage
-\section{Configurazione delle interfacce di rete} %?
+
 \section{Routing}
+Siccome le sottoreti degli edifici hanno una topologia a stella, per tutti i dispositivi eccetto i router nell'area di backbone, il routing è statico. 
+Sui router interni gira invece il protocollo OSPF, che permette di associare ad ogni edificio un'area, gestibile indipendentemente dalle altre. In prospettiva, ciò potrebbe tornare utile nel momento in cui, a livello di un singolo edificio, si decidesse di adottare una topologia di rete differente dall'attuale.
 \section{Misure di sicurezza}
 \subsection{Firewall}
+Per soddisfare gli standard minimi di sicurezza, si è scelto di adoperare due firewall distinti, configurati tramite \code{iptables}, integrati nei due router del Dipartimento Demilitarizzato. Grazie ad essi, la DMZ risulta protetta sia dagli accessi provenienti dalla rete locale che da quelli esterni. Il firewall collocato tra la rete locale e la DMZ filtra i pacchetti che queste due porzioni di rete si scambiano tramite due catene di regole (\code{dmzlan} e \code{landm}) e funge da NAT. Analogamente, il firewall esterno si serve delle due catene \code{inetdmz} e \code{dmzinet} per effettuare il packet filtering tra Internet e la DMZ.
 \subsection{Hardening: il server per applicazioni aziendali}
+
 \subsection{Monitoraggio della rete}
 \newpage
 \section{Preventivo di spesa}
+Assumendo che l'azienda sia già in possesso dei server e di tutti i terminali, il costo delle varie componenti hardware è riportato in tabella.
 \begin{table}[H]
 \centering
 \label{costo componentistica}
@@ -96,7 +102,9 @@ L'edificio B, soprannominato Bunker, contiene il server di Backup ed utilizza la
 \multicolumn{1}{|l|}{Cavo UTP} & 3000 m & 2.65 \$/m & 7950 \$ \\ \hline
 \multicolumn{1}{|l|}{VPN} &  & 300 \$ annui & 300 \$ annui \\ \hline
  &  & TOTALE: & \textbf{41291 \$} \\ \cline{3-4} 
+ &  & TOTALE (EUR): & \textbf{34323 EUR} \\ \cline{3-4} 
 \end{tabular}
 \caption{Costo delle componenti hardware}
 \end{table}
+\ \\Al costo della componentistica va sommato il costo dell'installazione, pari a 20.000 euro, per un totale complessivo di 54.323 euro.
 \end{document}
