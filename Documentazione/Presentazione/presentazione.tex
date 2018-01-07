@@ -16,14 +16,17 @@
   \maketitle
   \section{L'azienda}
   	\begin{frame}{Schema fisico}
-    	...
+    	\image[schema_fisico.png][scale=0.30]
   	\end{frame}
-  	\begin{frame}{Mezzi trasmissivi impiegati}
-  		...
+  	\begin{frame}{Collegamenti}
+  		\begin{itemize}
+  			\item \textbf{fibra ottica} per il collegamento degli edifici A, B, C e D
+  			\item \textbf{VPN} per l'edificio E
+  		\end{itemize}
   	\end{frame}
   \section{Topologia della rete}
   	\begin{frame}{Visione d'insieme}
-  		\image[disditta.png][scale=0.30]
+  		\image[schema_logico.png][scale=0.25]
   	\end{frame}
   	\begin{frame}{Edificio A: Amministrazione}
   		\image[ed_a.png][scale=0.50]
@@ -41,18 +44,52 @@
   		\image[ed_e.png][scale=0.50]
   	\end{frame}
   \section{Routing}
+  	\begin{frame}{Routing e DNS}
+  		\begin{itemize}
+  			\item \textbf{Routing statico} nelle reti a stella
+  			\item Protocollo \textbf{OSPF} nell'area di  backbone
+  			\item Due server \textbf{DNS}
+  		\end{itemize}
+  	\end{frame}
   \section{Misure di sicurezza}
-  	\begin{frame}{Firewall}
-  		...
-  	\end{frame}
-  	\begin{frame}{Protezione del server per applicazioni aziendali}
-  		...
-  	\end{frame}
-  	\begin{frame}{Monitoraggio}
-  		...
+  	\begin{frame}{Misure di sicurezza}
+  		\begin{itemize}
+  			\item doppio \textbf{firewall} per proteggere la DMZ da accessi interni ed esterni
+  			\item server \textbf{proxy}
+  			\item \textbf{hardening} server per applicazioni aziendali:
+  			\begin{itemize}
+  				\item pacchetti TCP filtrati con wrapper
+  				\item gestione servizi FTP, SSH e telnet con \texttt{xinetd}
+  			\end{itemize}
+  			\item \textbf{snmp} per il monitoraggio della rete
+  		\end{itemize}
   	\end{frame}
   \section{Costi}
-  \begin{frame}{Preventivo di spesa}
-  		...
+  	\begin{frame}{Preventivo di spesa}
+  	\begin{itemize}
+  	\item costo componentistica:
+  	\end{itemize}
+  		\begin{table}[H]
+			\centering
+			\label{costo componentistica}
+			\resizebox{\textwidth}{!}{\begin{tabular}{ll|l|l|}
+				\hline
+					\multicolumn{1}{|c|}{\textbf{Componente}} & \multicolumn{1}{c|}{\textbf{Quantità}} & \multicolumn{1}{c|}{\textbf{Prezzo cad.}} & \textbf{Prezzo tot.} \\ 						\hline
+					\multicolumn{1}{|l|}{Router CISCO 4331 ISR} & 5 & 1100 \$ & 5500 \$ \\ \hline
+					\multicolumn{1}{|l|}{Router CISCO ASR 1001} & 1 & 5630 \$ & 5630 \$ \\ \hline
+					\multicolumn{1}{|l|}{Modulo fibra} & 4 & 40 \$ & 160 \$ \\ \hline
+					\multicolumn{1}{|l|}{Switch CISCO SG300-52p} & 15 & 775 \$ & 11325 \$ \\ \hline
+					\multicolumn{1}{|l|}{Switch CISCO SG300-28p} & 4 & 355 \$ & 1420 \$ \\ \hline
+					\multicolumn{1}{|l|}{Ubiquiti Networks Unifi WiFi access point} & 1 & 130 \$ & 130 \$ \\ \hline
+					\multicolumn{1}{|l|}{Fibra ottica} & 1400 m & 6.34 \$/m & 8876 \$ \\ \hline
+					\multicolumn{1}{|l|}{Cavo UTP} & 3000 m & 2.65 \$/m & 7950 \$ \\ \hline
+					\multicolumn{1}{|l|}{VPN} &  & 300 \$ annui & 300 \$ annui \\ \hline
+ 					&  & TOTALE: & \textbf{41291 \$} \\ \cline{3-4} 
+ 					&  & TOTALE (EUR): & 	\textbf{34323 EUR} \\ \cline{3-4} 
+			\end{tabular}}
+		\end{table}	
+		\begin{itemize}
+			\item costo installazione: 20.000 euro.
+		\end{itemize}
   	\end{frame}
 \end{document}
